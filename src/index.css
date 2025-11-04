@@ -10,6 +10,12 @@
 	border: none;
 }
 
+/* ---------------Nav Bar------------------ */
+.no-border-select .ant-select-selector {
+	border: none !important;
+	box-shadow: none !important;
+}
+
 /* ---------------Home Page------------------ */
 /* Hero Section  */
 .hero-section {
@@ -18,4 +24,11 @@
 	background-position: center;
 	width: 100%;
 	height: 100vh;
+	padding-inline: 10%;
+}
+
+.hero-heading {
+	font-size: 3.8rem;
+	font-weight: 600;
+	color: #0a3c0cff;
 }

@@ -3,21 +3,22 @@ import { ShoppingCartOutlined, UserOutlined } from "@ant-design/icons";
 export const navItemsData = {
 	categories: [
 		{
-			name: "Categories",
+			label: "Categories",
+			value: "categories",
 		},
 
-		{ value: "all", name: "All" },
+		{ value: "all", label: "All" },
 		{
 			value: "men",
-			name: "Men",
+			label: "Men",
 		},
 		{
 			value: "women",
-			name: "Women",
+			label: "Women",
 		},
 		{
 			value: "kids",
-			name: "Kids",
+			label: "Kids",
 		},
 	],
 	quickAccess: [
@@ -41,7 +42,7 @@ export const navItems = [
 	{
 		id: 2,
 		path: "/whats-new",
-		name: "Whats New",
+		name: "What'sNew",
 	},
 	{
 		id: 3,

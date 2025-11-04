@@ -5,9 +5,32 @@ const HeroSection = () => {
   const { heading, description, buttonText } = heroData;
   return (
     <section className="hero-section">
-      <h1>{heading}</h1>
-      <p>{description}</p>
-      <Button type="primary">{buttonText}</Button>
+      <div
+        style={{
+          height: "100%",
+          width: "50%",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          gap: "2rem",
+        }}
+      >
+        <h1 className="hero-heading">{heading}</h1>
+        <p style={{ fontSize: "1.1rem", fontWeight: 500, color: "#0a3c0cff" }}>
+          {description}
+        </p>
+        <Button
+          type="primary"
+          style={{
+            width: "max-content",
+            backgroundColor: "#0a3c0cff",
+            color: "white",
+            borderRadius: "40px",
+          }}
+        >
+          {buttonText}
+        </Button>
+      </div>
     </section>
   );
 };
