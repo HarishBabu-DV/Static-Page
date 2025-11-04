@@ -6,8 +6,10 @@ export const navItemsData = {
 			label: "Categories",
 			value: "categories",
 		},
-
-		{ value: "all", label: "All" },
+		{
+			value: "all",
+			label: "All",
+		},
 		{
 			value: "men",
 			label: "Men",
