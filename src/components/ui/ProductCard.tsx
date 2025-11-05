@@ -34,7 +34,7 @@ const ProductCard = ({
       }}
     >
       {/* Card Media  */}
-      <div style={{ width, height }}>
+      <div style={{ width, height, position: "relative" }}>
         <img
           src={imgSrc}
           alt={imgAlt}

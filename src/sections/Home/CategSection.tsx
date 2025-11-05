@@ -43,8 +43,26 @@ const CategSection = () => {
   }, [allProducts, selectedCategory, setProducts]);
   return (
     <section>
+      <div className="px-16">
+        <h1 className="text-[1.3rem] font-semibold  py-4">
+          Shop Our Top Categories
+        </h1>
+        <div className="flex-align-center justify-center gap-12">
+          {categories.map((e) => (
+            <div key={e.id} className="w-52 h-[200px] relative rounded-[10px]">
+              <img
+                src={e.url}
+                alt={e.name}
+                className="w-full h-full rounded-[10px]"
+              />
+              <h2 className="absolute top-5 text-white text-[1.2rem] font-medium left-[50%] -translate-x-[50%]">
+                {e.name}
+              </h2>
+            </div>
+          ))}
+        </div>
+      </div>
       <h1 style={{ textAlign: "center", paddingBlock: "1rem" }}>Categories</h1>
-
       {/* Categories List  */}
       <ul
         style={{

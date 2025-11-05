@@ -22,10 +22,11 @@ const HeroSection = () => {
         <Button
           type="primary"
           style={{
-            width: "max-content",
             backgroundColor: "#0a3c0cff",
             color: "white",
             borderRadius: "40px",
+            width: "120px",
+            padding: "20px 10px",
           }}
         >
           {buttonText}

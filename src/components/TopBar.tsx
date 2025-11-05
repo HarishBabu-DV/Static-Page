@@ -1,20 +1,32 @@
 import { PhoneOutlined } from "@ant-design/icons";
+import { topBarData } from "../constants/topBarData";
+import { Select } from "antd";
 const TopBar = () => {
+  const { languages, locations } = topBarData;
   return (
     <div
       style={{
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
-        padding: "0 10px",
+        padding: "0 5rem",
         backgroundColor: "#0a3c0cff",
         color: "white",
         height: "40px",
       }}
+      className="text-[0.85rem]"
     >
-      <div>
-        <PhoneOutlined style={{ color: "white" }} />
-        +1 234 567 89
+      <div className="flex items-center gap-2">
+        <span>
+          <PhoneOutlined
+            style={{
+              color: "white",
+              transform: "rotate(90deg)",
+              fontSize: "1.05rem",
+            }}
+          />
+        </span>
+        <span>+1 234 567 89</span>
       </div>
       <div
         style={{
@@ -26,38 +38,27 @@ const TopBar = () => {
       >
         <span>Get 50% off on selected items </span>
         <span>|</span>
-        <span>Shop Now</span>
+        <span className="underline">Shop Now</span>
       </div>
-      <div>
-        <select
-          name=""
-          id=""
-          defaultValue="english"
-          style={{
-            backgroundColor: "transparent",
-            color: "white",
-            border: "none",
-          }}
-        >
-          <option value="english">English</option>
-          <option value="tamil">Tamil</option>
-          <option value="hindi">Hindi</option>
-          <option value="telugu">Telugu</option>
-        </select>
-        <select
-          name=""
-          id=""
-          style={{
-            backgroundColor: "transparent",
-            color: "white",
-            border: "none",
-          }}
-        >
-          <option value="india">India</option>
-          <option value="england">England</option>
-          <option value="argentina">Argentina</option>
-          <option value="australia">Australia</option>
-        </select>
+      <div className="flex items-center">
+        <div className="outer-select  **:text-[0.85rem]">
+          <Select
+            defaultValue={languages[0].value}
+            style={{
+              width: 70,
+              border: "0px",
+              color: "0a3c0cff",
+            }}
+            options={languages}
+          />
+        </div>
+        <div className="outer-select **:text-[0.85rem] **:font-bold">
+          <Select
+            defaultValue={locations[0].value}
+            style={{ width: 100, border: "0px" }}
+            options={locations}
+          />
+        </div>
       </div>
     </div>
   );

@@ -43,7 +43,6 @@ const Product = () => {
                 }}
               >
                 <img
-                  key={e}
                   src={e}
                   alt={currentProduct?.title}
                   style={{ width: "100%", height: "100%" }}

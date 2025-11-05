@@ -3,7 +3,7 @@ import Header from "../components/Header";
 
 const MainLayout = () => {
   return (
-    <div style={{ maxWidth: "1920px", margin: "0 auto" }}>
+    <div style={{ maxWidth: "1920px", width: "100%", marginInline: " auto" }}>
       <Header />
       <main>
         <Outlet />
