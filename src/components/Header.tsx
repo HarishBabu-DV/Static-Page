@@ -94,7 +94,6 @@ const Header = () => {
           </div>
         </div>
         {/* Right Side */}
-
         <div className="flex-align-center gap-12">
           {/* Search Bar  */}
           <Search

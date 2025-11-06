@@ -62,42 +62,9 @@ const CategSection = () => {
           ))}
         </div>
       </div>
-      <h1 style={{ textAlign: "center", paddingBlock: "1rem" }}>Categories</h1>
-      {/* Categories List  */}
-      <ul
-        style={{
-          listStyle: "none",
 
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "center",
-          gap: "1rem",
-        }}
-      >
-        {categories.map((e) => (
-          <li
-            key={e.id}
-            style={{
-              backgroundColor: "#bababaff",
-              padding: ".5rem 1rem",
-              fontSize: "1.1rem",
-              borderRadius: "5px",
-              border: "1px solid #272727ff",
-              cursor: "pointer",
-            }}
-            onClick={() => handleCategoryChange(e.value)}
-            onKeyDown={(event) => {
-              if (event.key === "Enter" || event.key === " ") {
-                handleCategoryChange(e.value);
-              }
-            }}
-          >
-            {e.name}
-          </li>
-        ))}
-      </ul>
       {/* List of Products  */}
-      <div className="product-container">
+      <div className="product-container  px-16 py-5">
         {products?.map((prod) => (
           <Link
             key={prod.id}
@@ -107,7 +74,7 @@ const CategSection = () => {
             <ProductCard
               prodId={prod.id}
               width={"100%"}
-              height={250}
+              height={220}
               title={prod.title}
               imgSrc={prod.thumbnail}
               imgAlt={prod.title}

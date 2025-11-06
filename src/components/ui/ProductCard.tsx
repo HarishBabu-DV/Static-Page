@@ -1,4 +1,3 @@
-import { CaretUpOutlined, HeartOutlined, StarFilled } from "@ant-design/icons";
 import type {
   FavoriteButtonProps,
   ProductCardProps,
@@ -12,84 +11,13 @@ import {
   StarBorder,
   StarHalf,
 } from "@mui/icons-material";
-import { Divider } from "antd";
-const ProductCard = ({
-  prodId,
-  width,
-  height,
-  imgSrc,
-  imgAlt,
-  title,
-  description,
-  price,
-  rating,
-}: ProductCardProps) => {
-  return (
-    <div
-      style={{
-        backgroundColor: "white",
-        borderRadius: "5px",
-
-        boxShadow: "0 0 10px #555555ff",
-      }}
-    >
-      {/* Card Media  */}
-      <div style={{ width, height, position: "relative" }}>
-        <img
-          src={imgSrc}
-          alt={imgAlt}
-          style={{ width: "100%", height: "100%", objectFit: "cover" }}
-        />
-        <FavoriteButton id={prodId} />
-      </div>
-      <Divider style={{ borderColor: "#afafafff", margin: 0 }} />
-      {/* Card Content  */}
-      <div
-        style={{
-          paddingInline: "0.7rem",
-          display: "flex",
-          flexDirection: "column",
-          gap: "0.5rem",
-          paddingBlock: "0.8rem",
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-          }}
-        >
-          <span className="product-heading" style={{ fontSize: "1.2rem" }}>
-            {title}
-          </span>
-          <span style={{ fontSize: "1.2rem" }}>${price}</span>
-        </div>
-        <p className="product-description">{description}</p>
-        <Ratings rating={rating} />
-        <button
-          type="button"
-          style={{
-            border: "1.5px solid #272727ff",
-            padding: "0.5rem 1rem",
-            fontSize: "1rem",
-            borderRadius: "20px",
-            width: "max-content",
-            cursor: "pointer",
-          }}
-        >
-          Add to Cart
-        </button>
-      </div>
-    </div>
-  );
-};
-
-export default ProductCard;
 
 // Favorite Button
 const FavoriteButton = ({ id }: FavoriteButtonProps) => {
   const [isFavorite, setIsFavorite] = useState(false);
-  const handleFavorite = () => {
+  const handleFavorite = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    e.preventDefault();
+    e.stopPropagation();
     const favoriteProducts = localStorage.getItem("favoriteProducts");
     //  Add or remove item
     if (favoriteProducts) {
@@ -133,18 +61,16 @@ const FavoriteButton = ({ id }: FavoriteButtonProps) => {
         top: "10px",
         right: "10px",
         zIndex: 20,
+        backgroundColor: "#fff",
+        borderRadius: "50%",
+        padding: ".3rem",
       }}
+      onClick={handleFavorite}
     >
       {isFavorite ? (
-        <Favorite
-          onClick={handleFavorite}
-          style={{ color: "red", fontSize: "1.9rem" }}
-        />
+        <Favorite style={{ color: "red", fontSize: "1.35rem" }} />
       ) : (
-        <FavoriteBorder
-          onClick={handleFavorite}
-          style={{ fontSize: "1.9rem" }}
-        />
+        <FavoriteBorder style={{ color: "gray", fontSize: "1.35rem" }} />
       )}
     </div>
   );
@@ -163,21 +89,96 @@ const Ratings = ({ rating }: RatingsProps) => {
       style={{
         display: "flex",
         alignItems: "center",
-        justifyContent: "space-between",
       }}
     >
       <div>
         {fullStars &&
           [...Array(fullStars)].map((_) => (
-            <Star style={{ color: "#ffb414ff" }} key={_} />
+            <Star className="star-style" key={_} sx={{ fontSize: "1.09rem" }} />
           ))}
-        {halfStars && <StarHalf style={{ color: "#ffb414ff" }} />}
+        {halfStars && (
+          <StarHalf className="star-style" sx={{ fontSize: "1.09rem" }} />
+        )}
         {emptyStars > 0 &&
           [...Array(emptyStars)].map((_) => (
-            <StarBorder style={{ color: "#ffb414ff" }} key={_} />
+            <StarBorder
+              className="star-style"
+              key={_}
+              sx={{ fontSize: "1.09rem" }}
+            />
           ))}
       </div>
-      <span>{rating}</span>
+      <span className="text-[0.8rem]">({rating})</span>
     </div>
   );
 };
+
+const ProductCard = ({
+  prodId,
+  width,
+  height,
+  imgSrc,
+  imgAlt,
+  title,
+  description,
+  price,
+  rating,
+}: ProductCardProps) => {
+  return (
+    <div
+      style={{
+        backgroundColor: "white",
+        borderRadius: "5px",
+      }}
+    >
+      {/* Card Media  */}
+      <div style={{ width, height, position: "relative" }}>
+        <img
+          src={imgSrc}
+          alt={imgAlt}
+          style={{ width: "100%", height: "100%", objectFit: "cover" }}
+          className="bg-gray-100"
+        />
+        <FavoriteButton id={prodId} />
+      </div>
+      {/* <Divider style={{ borderColor: "#afafafff", margin: 0 }} /> */}
+      {/* Card Content  */}
+      <div
+        style={{
+          paddingInline: "0.7rem",
+          display: "flex",
+          flexDirection: "column",
+          gap: "0.5rem",
+          paddingBlock: "0.8rem",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+          }}
+        >
+          <span className="product-heading">{title}</span>
+          <span style={{ fontSize: "1.2rem" }}>${price}</span>
+        </div>
+        <p className="product-description">{description}</p>
+        <Ratings rating={rating} />
+        <button
+          type="button"
+          style={{
+            border: "1.5px solid #272727ff",
+            padding: "0.4rem 0.85rem",
+            fontSize: "0.76rem",
+            borderRadius: "20px",
+            width: "max-content",
+            cursor: "pointer",
+          }}
+        >
+          Add to Cart
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default ProductCard;
