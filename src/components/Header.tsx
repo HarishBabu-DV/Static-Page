@@ -1,13 +1,44 @@
 import { Link } from "react-router";
-import { Input } from "antd";
+import { Card, Input } from "antd";
 import { navItems, navItemsData } from "../constants/navItems";
 import TopBar from "./TopBar";
 import { Select } from "antd";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { useCategories } from "../context/categoriesContext";
+import type { CategoryType } from "../types";
 const Header = () => {
   const { Search } = Input;
-  const { categories, quickAccess } = navItemsData;
+  const { categoriesList, quickAccess } = navItemsData;
   const [isSearch, setIsSearch] = useState<boolean>(false);
+  const { categories, setCategories } = useCategories();
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const { data } = await axios.get(
+          "https://dummyjson.com/products/category-list"
+        );
+        const categoriesNames: string[] = data;
+
+        // Step 2: Fetch first product thumbnail for each category
+        const categoryData: CategoryType[] = await Promise.all(
+          categoriesNames?.map(async (name: string, i: number) => {
+            const { data } = await axios.get(
+              `https://dummyjson.com/products/category/${name}`
+            );
+            const thumbnail = data.products?.[0]?.thumbnail || "";
+            return { id: i + 1, name, url: thumbnail };
+          })
+        );
+        setCategories(categoryData);
+      } catch (error) {
+        console.error("Error fetching categories:", error);
+      }
+    };
+    fetchCategories();
+  }, []);
+
+  console.log("categories", categories);
   return (
     <header
       style={{
@@ -65,7 +96,7 @@ const Header = () => {
             <Select
               defaultValue="categories"
               style={{ width: 110, border: "0px" }}
-              options={categories}
+              options={categoriesList}
             />
           </div>
         </div>
@@ -144,6 +175,19 @@ const Header = () => {
           </div>
         </div>
       </div>
+
+      {/* Categories Suggestion Box  */}
+
+      {/* <Card>
+        {categories.map((e) => (
+          <Card key={e.id} style={{ width: 90 }}>
+      
+            <div key={e.id}>
+              <img src="" alt="" />
+            </div>
+          </Card>
+        ))}
+      </Card> */}
     </header>
   );
 };

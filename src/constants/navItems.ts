@@ -1,7 +1,7 @@
 import { ShoppingCartOutlined, UserOutlined } from "@ant-design/icons";
 
 export const navItemsData = {
-	categories: [
+	categoriesList: [
 		{
 			label: "Categories",
 			value: "categories",

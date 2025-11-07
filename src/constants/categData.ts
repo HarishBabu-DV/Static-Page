@@ -6,7 +6,7 @@ import groceries from "../assets/images/groceries.jpg";
 import home from "../assets/images/home.jpg";
 import kitchen from "../assets/images/kitchen.jpg";
 import books from "../assets/images/books.jpg";
-export const categories = [
+export const staticCategories = [
 	{ id: 1, value: "all", name: "All", url: all },
 	{ id: 2, value: "fragrances", name: "Fragrances", url: fragrances },
 	{ id: 3, value: "furniture", name: "Furniture", url: furniture },

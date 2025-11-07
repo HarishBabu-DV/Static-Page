@@ -1,5 +1,5 @@
 import axios from "axios";
-import { categories } from "../../constants";
+import { staticCategories } from "../../constants";
 import { useContext, useEffect, useState } from "react";
 import { Col, Row } from "antd";
 import type { ProductType } from "../../types/product.types";
@@ -10,8 +10,11 @@ import {
   useProducts,
   type ProductsContextType,
 } from "../../context/productsContext";
+import { useCategories } from "../../context/categoriesContext";
 
 const CategSection = () => {
+  const { categories } = useCategories();
+
   const { products, setProducts } = useProducts();
   const [allProducts, setAllProducts] = useState<ProductType[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
@@ -19,15 +22,11 @@ const CategSection = () => {
   const handleCategoryChange = (cat: string) => {
     setSelectedCategory(cat);
   };
-
   useEffect(() => {
     const fetchProducts = async () => {
       const { data } = await axios.get("https://dummyjson.com/products");
       const products = data?.products;
-      console.log(
-        "products",
-        products.map((e: any) => e.category)
-      );
+
       setAllProducts(products);
       setProducts(products);
     };
@@ -48,14 +47,14 @@ const CategSection = () => {
           Shop Our Top Categories
         </h1>
         <div className="flex-align-center justify-center gap-12">
-          {categories.map((e) => (
+          {staticCategories.map((e) => (
             <div key={e.id} className="w-52 h-[200px] relative rounded-[10px]">
               <img
                 src={e.url}
                 alt={e.name}
                 className="w-full h-full rounded-[10px]"
               />
-              <h2 className="absolute top-5 text-white text-[1.2rem] font-medium left-[50%] -translate-x-[50%]">
+              <h2 className="absolute top-5 text-white text-[1.2rem] font-medium left-[50%] -translate-x-[50%] capitalize">
                 {e.name}
               </h2>
             </div>

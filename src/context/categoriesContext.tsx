@@ -1,3 +1,4 @@
+import type { CategoryType } from "../types";
 import type { ProductType as Product } from "../types/product.types";
 import {
   createContext,
@@ -8,26 +9,28 @@ import {
   type SetStateAction,
 } from "react";
 
-export interface ProductsContextType {
-  products: Product[];
-  setProducts: Dispatch<SetStateAction<Product[]>>;
+export interface CategoriesContextType {
+  categories: CategoryType[];
+  setCategories: Dispatch<SetStateAction<CategoryType[]>>;
 }
 
-export const ProductsContext = createContext<ProductsContextType | null>(null);
+export const CategoriesContext = createContext<CategoriesContextType | null>(
+  null
+);
 
-export const GlobalProducts = ({ children }: { children: ReactNode }) => {
-  const [products, setProducts] = useState<Product[]>([]);
+export const GlobalCategories = ({ children }: { children: ReactNode }) => {
+  const [categories, setCategories] = useState<CategoryType[]>([]);
   return (
-    <ProductsContext.Provider value={{ products, setProducts }}>
+    <CategoriesContext.Provider value={{ categories, setCategories }}>
       {children}
-    </ProductsContext.Provider>
+    </CategoriesContext.Provider>
   );
 };
 
-export const useProducts = () => {
-  const context = useContext(ProductsContext);
+export const useCategories = () => {
+  const context = useContext(CategoriesContext);
   if (!context) {
-    throw new Error("useProducts must be used within a ProductsProvider");
+    throw new Error("useCategories must be used within a CategoriesProvider");
   }
   return context;
 };
