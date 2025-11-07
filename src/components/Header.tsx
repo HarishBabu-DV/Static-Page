@@ -3,9 +3,11 @@ import { Input } from "antd";
 import { navItems, navItemsData } from "../constants/navItems";
 import TopBar from "./TopBar";
 import { Select } from "antd";
+import { useState } from "react";
 const Header = () => {
   const { Search } = Input;
   const { categories, quickAccess } = navItemsData;
+  const [isSearch, setIsSearch] = useState<boolean>(false);
   return (
     <header
       style={{
@@ -23,17 +25,17 @@ const Header = () => {
           alignItems: "center",
           gap: "2rem",
           backgroundColor: "#ffffffff",
-          padding: "5px 45px",
+          padding: "5px 50px",
         }}
       >
-        {/* Left Side */}
-        <div className="flex-align-center  justify-center  gap-16 ">
+        {/* ---------- Left Side ---------- */}
+        <div className="flex-align-center  justify-between   w-[25%] ">
           {/* Logo */}
           <div
             style={{
               display: "flex",
               alignItems: "center",
-              gap: ".5rem",
+              gap: ".15rem",
             }}
           >
             <div
@@ -52,31 +54,36 @@ const Header = () => {
               />
             </div>
             <h2
-              style={{ fontSize: "1.8rem" }}
+              style={{ fontSize: "1.3rem" }}
               className="font-semibold text-secondary"
             >
               Shopcart
             </h2>
           </div>
-
-          {/* Nav Items */}
+          <div className=" no-border-select">
+            {/* Categories  */}
+            <Select
+              defaultValue="categories"
+              style={{ width: 110, border: "0px" }}
+              options={categories}
+            />
+          </div>
+        </div>
+        {/* ---------- Right Side ---------- */}
+        <div className="w-[75%] flex-align-center  justify-between">
+          {/* Nav Items  and Search Bar  */}
           <div
             style={{
               display: "flex",
               alignItems: "center",
-              gap: "1.5rem",
+              gap: "2rem",
+              justifyContent: "space-around",
+              width: "73%",
+              position: "relative",
             }}
           >
-            <div className=" no-border-select">
-              {/* Categories  */}
-              <Select
-                defaultValue="categories"
-                style={{ width: 120, border: "0px" }}
-                options={categories}
-              />
-            </div>
             {/* Navitems  */}
-            <nav style={{ display: "flex", gap: "1.5rem" }}>
+            <nav style={{ display: "flex", gap: "2.2rem" }}>
               {navItems.map((item) => (
                 <Link
                   key={item.id}
@@ -91,36 +98,49 @@ const Header = () => {
                 </Link>
               ))}
             </nav>
+            {/* Search Bar  */}
+            <Search
+              placeholder="Search product"
+              allowClear
+              className="search-bar"
+              style={{
+                width: "100%",
+                borderRadius: "60px ",
+                transition: "position 400ms ease-out",
+                ...(isSearch && {
+                  position: "absolute",
+                  top: "0px",
+                  zIndex: 1000,
+                  backgroundColor: "rgba(243, 243, 243)",
+                }),
+              }}
+              onFocus={() => setIsSearch(true)}
+              onBlur={() => setIsSearch(false)}
+            />
           </div>
-        </div>
-        {/* Right Side */}
-        <div className="flex-align-center gap-12">
-          {/* Search Bar  */}
-          <Search
-            placeholder="Search product"
-            allowClear
-            className="search-bar"
-            style={{ width: 300, borderRadius: "60px" }}
-          />
           {/* Quick Access  */}
-          <div style={{ display: "flex", alignItems: "center", gap: "1.5rem" }}>
-            {quickAccess.map((e) => (
-              <Link
-                key={e.name}
-                to={e.name}
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  color: "black",
-                  textDecoration: "none",
-                  gap: "0.4rem",
-                }}
-                className="font-normal"
-              >
-                <span>{<e.icon />}</span>
-                <span>{e.name}</span>
-              </Link>
-            ))}
+          <div className="flex-align-center  w-[23%] ">
+            <div
+              style={{ display: "flex", alignItems: "center", gap: "1.5rem" }}
+            >
+              {quickAccess.map((e) => (
+                <Link
+                  key={e.name}
+                  to={e.name}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    color: "black",
+                    textDecoration: "none",
+                    gap: "0.4rem",
+                  }}
+                  className="font-normal"
+                >
+                  <span>{<e.icon />}</span>
+                  <span>{e.name}</span>
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
       </div>

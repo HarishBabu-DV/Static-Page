@@ -51,8 +51,14 @@
 
 .search-bar *{
 	border: 0 !important;
-	background-color: rgba(233, 233, 233, 0.205) !important;
-
+	background-color: rgba(243, 243, 243, 0.733) !important;
+}
+.search-bar input::placeholder {
+  color: #424242 !important; /* your color */
+  opacity: 1; /* optional: make sure it’s fully visible */
+}
+.search-bar input:focus::placeholder {
+	opacity: 0;
 }
 
 /* ---------------Home Page------------------ */
