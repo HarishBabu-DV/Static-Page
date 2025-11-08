@@ -1,0 +1,12 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "shell",
+			"label": "Client",
+			"command": ["npm", "run", "dev"],
+			"options": { "cwd": "${workspaceFolder}" },
+			"runOptions": { "runOn": "folderOpen", "instanceLimit": 1 }
+		}
+	]
+}
