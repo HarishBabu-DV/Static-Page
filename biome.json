@@ -1,6 +1,9 @@
 {
 	"$schema": "https://biomejs.dev/schemas/2.3.2/schema.json",
+<<<<<<< HEAD
 
+=======
+>>>>>>> 31f277f (feat(ui): Categ suggestion bar finish)
 	"vcs": {
 		"enabled": false,
 		"clientKind": "git",
@@ -19,7 +22,14 @@
 	"linter": {
 		"enabled": true,
 		"rules": {
+<<<<<<< HEAD
 			"recommended": true
+=======
+			"recommended": true,
+			"suspicious": {
+				"noConsole": "warn"
+			}
+>>>>>>> 31f277f (feat(ui): Categ suggestion bar finish)
 		}
 	},
 	"javascript": {
