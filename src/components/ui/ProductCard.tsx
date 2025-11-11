@@ -12,6 +12,7 @@ import {
   StarHalf,
 } from '@mui/icons-material'
 import Ratings from './Ratings'
+import AddToCartButton from './AddToCartButton'
 
 // Favorite Button
 const FavoriteButton = ({ id }: FavoriteButtonProps) => {
@@ -126,18 +127,7 @@ const ProductCard = ({
         </div>
         <p className='product-description'>{description}</p>
         <Ratings rating={rating} />
-        <button
-          type='button'
-          style={{
-            border: '1.5px solid #272727ff',
-            padding: '0.4rem 0.85rem',
-            fontSize: '0.76rem',
-            borderRadius: '20px',
-            width: 'max-content',
-            cursor: 'pointer',
-          }}>
-          Add to Cart
-        </button>
+        <AddToCartButton padding='0.4rem 0.85rem' fontSize='0.76rem' />
       </div>
     </div>
   )

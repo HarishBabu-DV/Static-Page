@@ -33,7 +33,6 @@ const Header = () => {
         )
         const categoriesNames: string[] = data
 
-        // Step 2: Fetch first product thumbnail for each category
         const categoryData: CategoryType[] = await Promise.all(
           categoriesNames?.map(async (name: string, i: number) => {
             const { data } = await axios.get(
@@ -53,7 +52,6 @@ const Header = () => {
   }, [setCategories])
 
   useEffect(() => {
-    console.log('searchValue', searchValue)
     if (searchValue !== '') {
       const searchedProducts = products.filter((product) =>
         product.title.toLowerCase().includes(searchValue.toLowerCase())
@@ -236,29 +234,31 @@ const Header = () => {
                   <Card style={{ width: '100%' }}>
                     <div className='grid grid-cols-2 gap-2 w-full'>
                       {categories.slice(0, 6).map((e) => (
-                        <Card
-                          key={e.id}
-                          style={{
-                            backgroundColor: 'rgba(243, 243, 243)',
-                          }}>
-                          {/* Image  */}
-                          <div className='w-[30%]'>
-                            <div key={e.id} className='w-full h-[70px]'>
-                              <img
-                                src={e.url}
-                                alt={e?.name}
-                                className='w-full h-full'
-                              />
+                        <Link key={e.id} to={`/products/category/${e.name}`}>
+                          <Card
+                            key={e.id}
+                            style={{
+                              backgroundColor: 'rgba(243, 243, 243)',
+                            }}>
+                            {/* Image  */}
+                            <div className='w-[30%]'>
+                              <div key={e.id} className='w-full h-[70px]'>
+                                <img
+                                  src={e.url}
+                                  alt={e?.name}
+                                  className='w-full h-full'
+                                />
+                              </div>
                             </div>
-                          </div>
-                          {/* Description  */}
-                          <div className='w-[70%]'>
-                            <h3 className='font-medium capitalize'>
-                              {e?.name}
-                            </h3>
-                            <p>{e?.brand}</p>
-                          </div>
-                        </Card>
+                            {/* Description  */}
+                            <div className='w-[70%]'>
+                              <h3 className='font-medium capitalize'>
+                                {e?.name}
+                              </h3>
+                              <p>{e?.brand}</p>
+                            </div>
+                          </Card>
+                        </Link>
                       ))}
                     </div>
                   </Card>
