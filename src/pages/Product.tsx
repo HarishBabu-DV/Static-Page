@@ -11,7 +11,6 @@ import {
   PlusOutlined,
   TruckOutlined,
 } from '@ant-design/icons'
-import AddToCartButton from '../components/ui/AddToCartButton'
 
 type BreadcrumbType = {
   title: string
@@ -145,7 +144,6 @@ const Product = () => {
     }
     return []
   }, [currentProduct])
-  console.log('breadcrumbs', breadcrumbs)
   useEffect(() => {
     setCurrentProduct(products.find((e) => e.id === Number(id)))
   }, [products, id])
